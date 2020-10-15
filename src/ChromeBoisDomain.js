@@ -19,9 +19,7 @@ export default class ChromeBoisDomain extends Component {
    */
 
   handleClick = (e) => {
-    e.preventDefault();
-    toggleCycling
-    console.log('clicked')
+    toggleCycling()
   }
    
   /* TODO: Add an event listener to the `<canvas>` element to capture when a key
@@ -30,11 +28,20 @@ export default class ChromeBoisDomain extends Component {
   /* if the key pressed was 'a', then it should call `resize` with '+'
   /* if the key pressed was 's', then it should call `resize` with '-' 
    */
+
+   handleKey = (e) => {
+    if (e.key == 'a') {
+      resize('+')
+    } else if (e.key == 's') {
+      resize('-')
+    }
+   }
   
   render() {
     return (
       <canvas 
-        onclick={this.handleClick}
+        onKeyDown={this.handleKey}
+        onClick={this.handleClick}
         onMouseMove={this.handleMouseMove}
         width='900'
         height='600'
